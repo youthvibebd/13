@@ -1,0 +1,3291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13TH FUNERAL | OFFICIAL WEBSITE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0a0a0f;
+            --darker-bg: #050507;
+            --accent: #ff2a2a;
+            --accent-dark: #c21e1e;
+            --accent-light: #ff5e5e;
+            --text: #f0f0f0;
+            --text-dim: #b0b0b0;
+            --panel: #13131a;
+            --panel-border: #252535;
+            --success: #2aad2a;
+            --warning: #ffcc00;
+            --danger: #ff3333;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 42, 42, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 42, 42, 0.05) 0%, transparent 20%);
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        /* Particle background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        /* Admin Layout */
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar */
+        .admin-sidebar {
+            width: 260px;
+            background: rgba(10, 10, 15, 0.95);
+            border-right: 1px solid var(--panel-border);
+            padding: 20px 0;
+            position: fixed;
+            height: 100vh;
+            z-index: 1000;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        
+        .sidebar-logo {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid var(--panel-border);
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-logo h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255, 42, 42, 0.3);
+        }
+        
+        .sidebar-logo span {
+            color: var(--text);
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            padding: 0 15px;
+        }
+        
+        .menu-item {
+            margin-bottom: 5px;
+        }
+        
+        .menu-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-dim);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .menu-link:hover, .menu-link.active {
+            background: var(--panel);
+            color: var(--accent);
+        }
+        
+        .menu-link i {
+            width: 30px;
+            font-size: 1.1rem;
+            margin-right: 10px;
+        }
+        
+        .menu-text {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .menu-divider {
+            height: 1px;
+            background: var(--panel-border);
+            margin: 20px 0;
+        }
+        
+        /* Main Content */
+        .admin-main {
+            flex: 1;
+            margin-left: 260px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+        
+        /* Admin Header */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(10, 10, 15, 0.95);
+            border-bottom: 1px solid var(--panel-border);
+            margin-bottom: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-left h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-box input {
+            padding: 10px 15px 10px 40px;
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+            border-radius: 30px;
+            color: var(--text);
+            width: 250px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-dark), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        
+        .profile-name {
+            font-weight: 600;
+        }
+        
+        .profile-dropdown {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: var(--panel);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 200px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 10;
+            border: 1px solid var(--panel-border);
+        }
+        
+        .user-profile:hover .profile-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .dropdown-item:hover {
+            background: rgba(255, 42, 42, 0.1);
+            color: var(--accent);
+        }
+        
+        /* Dashboard */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: var(--panel);
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid var(--panel-border);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 42, 42, 0.1);
+            border-color: var(--accent);
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .stat-title {
+            font-size: 1rem;
+            color: var(--text-dim);
+            margin-bottom: 15px;
+        }
+        
+        .stat-icon {
+            position: absolute;
+            right: 25px;
+            top: 25px;
+            font-size: 2.5rem;
+            opacity: 0.2;
+        }
+        
+        .card-primary::before { background: var(--accent); }
+        .card-success::before { background: var(--success); }
+        .card-warning::before { background: var(--warning); }
+        .card-danger::before { background: var(--danger); }
+        
+        /* Content Sections */
+        .content-section {
+            background: var(--panel);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--panel-border);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--panel-border);
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            color: var(--accent);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--accent);
+            border: none;
+            color: #000;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: var(--transition);
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 42, 42, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+        
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #000;
+        }
+        
+        /* Tables */
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .admin-table th {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 2px solid var(--panel-border);
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        
+        .admin-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--panel-border);
+            color: var(--text-dim);
+        }
+        
+        .admin-table tr:hover td {
+            background: rgba(255, 42, 42, 0.05);
+            color: var(--text);
+        }
+        
+        .table-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--panel-border);
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .action-btn:hover {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-published {
+            background: rgba(42, 173, 42, 0.15);
+            color: var(--success);
+        }
+        
+        .status-draft {
+            background: rgba(255, 204, 0, 0.15);
+            color: var(--warning);
+        }
+        
+        .status-pending {
+            background: rgba(255, 51, 51, 0.15);
+            color: var(--danger);
+        }
+        
+        /* Forms */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dim);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 42, 42, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--panel-border);
+        }
+        
+        /* Header and Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 42, 42, 0.2);
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            padding: 15px 5%;
+            background: rgba(10, 10, 15, 0.98);
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 2.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-shadow: 0 0 15px rgba(255, 42, 42, 0.5);
+            position: relative;
+        }
+        
+        .logo span {
+            color: var(--text);
+        }
+        
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+        
+        .logo:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-link {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            z-index: 10;
+        }
+        
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 42, 42, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: var(--text-dim);
+        }
+        
+        .frontend-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: var(--transition);
+            margin: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .frontend-btn:hover {
+            background: var(--accent);
+            color: #000;
+            box-shadow: 0 0 25px rgba(255, 42, 42, 0.5);
+            transform: translateY(-5px);
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: #000;
+        }
+        
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+        
+        /* Section Styling */
+        .section {
+            padding: 100px 5%;
+            position: relative;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+        }
+        
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .news-card {
+            background: var(--panel);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--panel-border);
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 42, 42, 0.2);
+            border-color: var(--accent);
+        }
+        
+        .news-image {
+            height: 220px;
+            background: linear-gradient(45deg, #2c1a1a, #1a1a2c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .news-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 42, 42, 0.1), transparent);
+        }
+        
+        .news-content {
+            padding: 25px;
+        }
+        
+        .news-date {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .news-title {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .news-excerpt {
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .news-link {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding-right: 25px;
+        }
+        
+        .news-link::after {
+            content: '→';
+            position: absolute;
+            right: 0;
+            transition: var(--transition);
+        }
+        
+        .news-link:hover::after {
+            right: -5px;
+        }
+        
+        /* Music Section */
+        .music-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--panel);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--panel-border);
+        }
+        
+        .album-art {
+            flex: 0 0 45%;
+            position: relative;
+            min-height: 500px;
+            background: linear-gradient(45deg, #1a1a1a, #2c1a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .album-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .album-art::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 42, 42, 0.1), transparent);
+        }
+        
+        .album-art i {
+            font-size: 8rem;
+            color: var(--accent);
+            opacity: 0.5;
+            z-index: 1;
+        }
+        
+        .album-info {
+            flex: 1;
+            padding: 40px;
+        }
+        
+        .album-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .album-subtitle {
+            color: var(--text-dim);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .track-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .track-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--panel-border);
+            display: flex;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+        
+        .track-list li:hover {
+            color: var(--accent);
+        }
+        
+        .track-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .track-number {
+            color: var(--accent);
+            margin-right: 15px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .track-play {
+            color: var(--accent);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--accent);
+        }
+        
+        .track-play:hover {
+            background: var(--accent);
+            color: #000;
+        }
+        
+        .streaming-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .stream-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--panel-border);
+            border-radius: 30px;
+            color: var(--text);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .stream-btn:hover {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+        }
+        
+        /* Videos Section */
+        .videos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .video-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 42, 42, 0.2);
+        }
+        
+        .video-thumb {
+            position: relative;
+            height: 250px;
+            background: linear-gradient(45deg, #1a1a1a, #2c1a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-thumb::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 42, 42, 0.1), transparent);
+        }
+        
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2;
+        }
+        
+        .video-play-btn:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 42, 42, 0.8);
+        }
+        
+        .video-play-btn i {
+            font-size: 1.8rem;
+            margin-left: 5px;
+            color: #000;
+        }
+        
+        .video-info {
+            padding: 25px;
+        }
+        
+        .video-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .video-date {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        /* Tour Section */
+        .tour-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .tour-item {
+            display: flex;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            background: var(--panel);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--panel-border);
+            transition: var(--transition);
+        }
+        
+        .tour-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 42, 42, 0.2);
+        }
+        
+        .tour-date {
+            background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+            color: white;
+            padding: 30px 25px;
+            min-width: 150px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .tour-day {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .tour-month {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .tour-info {
+            padding: 30px;
+            flex: 1;
+        }
+        
+        .tour-location {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .tour-venue {
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: block;
+            font-size: 1.1rem;
+        }
+        
+        .tour-btn {
+            display: inline-block;
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 15px;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        .tour-btn:hover {
+            background: var(--accent);
+            color: #000;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            background: var(--panel);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--panel-border);
+        }
+        
+        .contact-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+        
+        .contact-detail {
+            display: flex;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 42, 42, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.2rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        
+        .contact-text h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        
+        .contact-text p {
+            color: var(--text-dim);
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 30px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: var(--transition);
+            border: 1px solid var(--panel-border);
+        }
+        
+        .social-link:hover {
+            background: var(--accent);
+            color: #000;
+            transform: translateY(-5px);
+        }
+        
+        .contact-form {
+            background: var(--panel);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--panel-border);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 42, 42, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-block;
+            font-weight: 700;
+        }
+        
+        .submit-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 42, 42, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--panel-border);
+            background: var(--darker-bg);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+        }
+        
+        /* View Toggle */
+        .view-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .view-btn {
+            padding: 10px 20px;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            border-radius: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .view-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 42, 42, 0.3);
+        }
+        
+        /* Login Page */
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .login-box {
+            width: 100%;
+            max-width: 450px;
+            background: var(--panel);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--panel-border);
+            text-align: center;
+            z-index: 10;
+        }
+        
+        .login-logo {
+            margin-bottom: 30px;
+        }
+        
+        .login-logo h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            color: var(--accent);
+            text-shadow: 0 0 15px rgba(255, 42, 42, 0.3);
+        }
+        
+        .login-logo span {
+            color: var(--text);
+        }
+        
+        .login-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+        
+        /* File Upload */
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .file-upload-label {
+            display: block;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed var(--panel-border);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .file-upload-label:hover {
+            border-color: var(--accent);
+            background: rgba(255, 42, 42, 0.05);
+        }
+        
+        .file-upload-label i {
+            display: block;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .file-upload-input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .preview-container {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .preview-container img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+            border: 1px solid var(--panel-border);
+        }
+        
+        /* Video URL Input */
+        .video-url-input {
+            margin-top: 15px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .admin-sidebar {
+                width: 80px;
+            }
+            
+            .admin-sidebar .menu-text,
+            .admin-sidebar .sidebar-logo h2 span {
+                display: none;
+            }
+            
+            .admin-main {
+                margin-left: 80px;
+            }
+            
+            .music-container {
+                flex-direction: column;
+            }
+            
+            .album-art {
+                min-height: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .admin-sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .admin-sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .admin-main {
+                margin-left: 0;
+            }
+            
+            .header-left h1 {
+                font-size: 1.5rem;
+            }
+            
+            .search-box {
+                display: none;
+            }
+            
+            .mobile-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: var(--text);
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+                letter-spacing: 4px;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--darker-bg);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                border-bottom: 1px solid rgba(255, 42, 42, 0.2);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .section {
+                padding: 80px 5%;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .videos-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tour-item {
+                flex-direction: column;
+            }
+            
+            .tour-date {
+                flex-direction: row;
+                justify-content: space-around;
+                padding: 15px;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+                letter-spacing: 2px;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .frontend-btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle background -->
+    <div id="particles-js"></div>
+    
+    <!-- View Toggle Buttons -->
+    <div class="view-toggle">
+        <button id="showFrontend" class="view-btn">Show Website</button>
+        <button id="showAdmin" class="view-btn">Show Admin</button>
+    </div>
+
+    <!-- Frontend Website -->
+    <div id="frontend-website">
+        <!-- Header -->
+        <header id="header">
+            <a href="#" class="logo">13<span>TH</span> FUNERAL</a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <a href="#news" class="nav-link active">News</a>
+                <a href="#music" class="nav-link">Music</a>
+                <a href="#videos" class="nav-link">Videos</a>
+                <a href="#tour" class="nav-link">Tour</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </header>
+        
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>13TH FUNERAL</h1>
+                <p>DARKNESS PERFECTED THROUGH SOUND | THE NEW ALBUM "ETERNAL SHADOWS" OUT NOW</p>
+                <div>
+                    <a href="#music" class="frontend-btn btn-primary">LISTEN NOW</a>
+                    <a href="#tour" class="frontend-btn">TOUR DATES</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- News Section -->
+        <section id="news" class="section">
+            <h2 class="section-title">Latest News</h2>
+            <div class="news-grid" id="frontendNewsGrid">
+                <!-- News will be dynamically populated -->
+            </div>
+        </section>
+        
+        <!-- Music Section -->
+        <section id="music" class="section">
+            <h2 class="section-title">Our Music</h2>
+            <div class="music-container" id="musicContainer">
+                <!-- Music content will be dynamically populated -->
+            </div>
+        </section>
+        
+        <!-- Videos Section -->
+        <section id="videos" class="section">
+            <h2 class="section-title">Music Videos</h2>
+            <div class="videos-container" id="videosContainer">
+                <!-- Videos will be dynamically populated -->
+            </div>
+        </section>
+        
+        <!-- Tour Section -->
+        <section id="tour" class="section">
+            <h2 class="section-title">Tour Dates</h2>
+            <div class="tour-container" id="tourContainer">
+                <!-- Tour dates will be dynamically populated -->
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2 class="contact-title">Get In Touch</h2>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>contact@13thfuneral.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Management</h4>
+                            <p>Dark Harmony Entertainment<br>Los Angeles, CA 90028</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="contact-title" style="margin-top: 40px;">Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/13thFuneral" class="social-link" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-spotify"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-bandcamp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h2 class="contact-title">Send a Message</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="logo" style="font-size: 2.5rem; margin-bottom: 20px;">13<span>TH</span> FUNERAL</div>
+                <div class="copyright">&copy; 2025 13TH FUNERAL. ALL RIGHTS RESERVED.</div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="admin-container" style="display:none">
+        <!-- Sidebar -->
+        <div class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-logo">
+                <h2>13<span>TH</span> ADMIN</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="menu-item">
+                    <a href="#" class="menu-link active" data-section="dashboard">
+                        <i class="fas fa-chart-line"></i>
+                        <span class="menu-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" data-section="news">
+                        <i class="fas fa-newspaper"></i>
+                        <span class="menu-text">News</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" data-section="music">
+                        <i class="fas fa-music"></i>
+                        <span class="menu-text">Music</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" data-section="videos">
+                        <i class="fas fa-video"></i>
+                        <span class="menu-text">Videos</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" data-section="tour">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span class="menu-text">Tour Dates</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" data-section="messages">
+                        <i class="fas fa-envelope"></i>
+                        <span class="menu-text">Messages</span>
+                    </a>
+                </li>
+                <li class="menu-divider"></li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" data-section="settings">
+                        <i class="fas fa-cog"></i>
+                        <span class="menu-text">Settings</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="menu-text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="admin-main">
+            <!-- Header -->
+            <div class="admin-header">
+                <div class="header-left">
+                    <button class="mobile-toggle" id="adminMobileToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </div>
+                    <div class="user-profile">
+                        <div class="profile-img">DM</div>
+                        <div class="profile-name">Dark Maestro</div>
+                        <div class="profile-dropdown">
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-user"></i> Profile
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                            <a href="#" class="dropdown-item" id="dropdownLogout">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div id="dashboardSection">
+                <!-- Dashboard Stats -->
+                <div class="dashboard-grid">
+                    <div class="stat-card card-primary">
+                        <div class="stat-value">1,248</div>
+                        <div class="stat-title">Total Visitors</div>
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    </div>
+                    <div class="stat-card card-success">
+                        <div class="stat-value">42</div>
+                        <div class="stat-title">News Articles</div>
+                        <div class="stat-icon"><i class="fas fa-newspaper"></i></div>
+                    </div>
+                    <div class="stat-card card-warning">
+                        <div class="stat-value">18</div>
+                        <div class="stat-title">Pending Messages</div>
+                        <div class="stat-icon"><i class="fas fa-envelope"></i></div>
+                    </div>
+                    <div class="stat-card card-danger">
+                        <div class="stat-value">3</div>
+                        <div class="stat-title">Albums</div>
+                        <div class="stat-icon"><i class="fas fa-compact-disc"></i></div>
+                    </div>
+                </div>
+
+                <!-- Recent Messages -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Recent Messages</h2>
+                        <a href="#" class="btn">View All</a>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Alex Johnson</td>
+                                <td>alex@example.com</td>
+                                <td>Tour question</td>
+                                <td>Aug 12, 2025</td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <div class="action-btn"><i class="fas fa-eye"></i></div>
+                                        <div class="action-btn"><i class="fas fa-reply"></i></div>
+                                        <div class="action-btn"><i class="fas fa-trash"></i></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sarah Williams</td>
+                                <td>sarah@metal.com</td>
+                                <td>Album pre-order</td>
+                                <td>Aug 10, 2025</td>
+                                <td><span class="status-badge status-published">Replied</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <div class="action-btn"><i class="fas fa-eye"></i></div>
+                                        <div class="action-btn"><i class="fas fa-reply"></i></div>
+                                        <div class="action-btn"><i class="fas fa-trash"></i></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Website Activity -->
+                <div class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Website Activity</h2>
+                    </div>
+                    <div style="background: var(--darker-bg); height: 300px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--text-dim);">
+                        <i class="fas fa-chart-line" style="font-size: 3rem; margin-right: 15px;"></i>
+                        <span>Website Traffic Analytics</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News Management Section -->
+            <div id="newsSection" style="display: none;">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">News Management</h2>
+                        <button class="btn" id="addNewsBtn">Add New</button>
+                    </div>
+                    
+                    <div id="newsList">
+                        <!-- News articles will be listed here -->
+                    </div>
+                    
+                    <div id="newsForm" style="display: none;">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="newsTitle">Title</label>
+                                <input type="text" id="newsTitle" class="form-control" placeholder="Enter news title">
+                            </div>
+                            <div class="form-group">
+                                <label for="newsDate">Date</label>
+                                <input type="date" id="newsDate" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="newsCategory">Category</label>
+                                <select id="newsCategory" class="form-control">
+                                    <option>Album Release</option>
+                                    <option>Tour Announcement</option>
+                                    <option>Merchandise</option>
+                                    <option>Band Update</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="newsStatus">Status</label>
+                                <select id="newsStatus" class="form-control">
+                                    <option>Published</option>
+                                    <option>Draft</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="file-upload">
+                            <label class="file-upload-label" for="newsImage">
+                                <i class="fas fa-image"></i>
+                                <span>Upload News Image</span>
+                                <input type="file" id="newsImage" class="file-upload-input" accept="image/*">
+                            </label>
+                            <div class="preview-container" id="newsImagePreview">
+                                <img id="newsPreviewImg" src="" alt="Preview">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="newsContent">Content</label>
+                            <textarea id="newsContent" class="form-control" placeholder="Enter news content"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button class="btn btn-outline" id="cancelNewsBtn">Cancel</button>
+                            <button class="btn" id="saveNewsBtn">Save News</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Music Management Section -->
+            <div id="musicSection" style="display: none;">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Music Management</h2>
+                        <button class="btn" id="addAlbumBtn">Add Album</button>
+                    </div>
+                    
+                    <div id="albumList">
+                        <!-- Albums will be listed here -->
+                    </div>
+                    
+                    <div id="albumForm" style="display: none;">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="albumTitle">Album Title</label>
+                                <input type="text" id="albumTitle" class="form-control" placeholder="Enter album title">
+                            </div>
+                            <div class="form-group">
+                                <label for="albumDate">Release Date</label>
+                                <input type="date" id="albumDate" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="albumType">Album Type</label>
+                                <select id="albumType" class="form-control">
+                                    <option>Studio Album</option>
+                                    <option>EP</option>
+                                    <option>Live Album</option>
+                                    <option>Compilation</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="file-upload">
+                            <label class="file-upload-label" for="albumCover">
+                                <i class="fas fa-album"></i>
+                                <span>Upload Album Cover</span>
+                                <input type="file" id="albumCover" class="file-upload-input" accept="image/*">
+                            </label>
+                            <div class="preview-container" id="albumCoverPreview">
+                                <img id="albumPreviewImg" src="" alt="Preview">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tracks">Tracks</label>
+                            <div id="tracksContainer" style="background: var(--darker-bg); border-radius: 8px; padding: 15px;">
+                                <!-- Tracks will be added here -->
+                            </div>
+                            <button class="btn btn-outline" style="margin-top: 15px;" id="addTrackBtn">Add Track</button>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn btn-outline" id="cancelAlbumBtn">Cancel</button>
+                            <button class="btn" id="saveAlbumBtn">Save Album</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video Management Section -->
+            <div id="videosSection" style="display: none;">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Video Management</h2>
+                        <button class="btn" id="addVideoBtn">Add Video</button>
+                    </div>
+                    
+                    <div id="videoList">
+                        <!-- Videos will be listed here -->
+                    </div>
+                    
+                    <div id="videoForm" style="display: none;">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="videoTitle">Title</label>
+                                <input type="text" id="videoTitle" class="form-control" placeholder="Enter video title">
+                            </div>
+                            <div class="form-group">
+                                <label for="videoDate">Date</label>
+                                <input type="date" id="videoDate" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <div class="file-upload">
+                            <label class="file-upload-label" for="videoThumbnail">
+                                <i class="fas fa-image"></i>
+                                <span>Upload Video Thumbnail</span>
+                                <input type="file" id="videoThumbnail" class="file-upload-input" accept="image/*">
+                            </label>
+                            <div class="preview-container" id="videoThumbnailPreview">
+                                <img id="videoPreviewImg" src="" alt="Preview">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="videoUrl">Video URL</label>
+                            <input type="text" id="videoUrl" class="form-control" placeholder="Enter YouTube or Vimeo URL">
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn btn-outline" id="cancelVideoBtn">Cancel</button>
+                            <button class="btn" id="saveVideoBtn">Save Video</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tour Management Section -->
+            <div id="tourSection" style="display: none;">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Tour Management</h2>
+                        <button class="btn" id="addTourBtn">Add Tour Date</button>
+                    </div>
+                    
+                    <div id="tourList">
+                        <!-- Tour dates will be listed here -->
+                    </div>
+                    
+                    <div id="tourForm" style="display: none;">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="tourDate">Date</label>
+                                <input type="date" id="tourDate" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="tourLocation">Location</label>
+                                <input type="text" id="tourLocation" class="form-control" placeholder="Enter location">
+                            </div>
+                            <div class="form-group">
+                                <label for="tourVenue">Venue</label>
+                                <input type="text" id="tourVenue" class="form-control" placeholder="Enter venue name">
+                            </div>
+                        </div>
+                        
+                        <div class="file-upload">
+                            <label class="file-upload-label" for="tourImage">
+                                <i class="fas fa-image"></i>
+                                <span>Upload Tour Poster</span>
+                                <input type="file" id="tourImage" class="file-upload-input" accept="image/*">
+                            </label>
+                            <div class="preview-container" id="tourImagePreview">
+                                <img id="tourPreviewImg" src="" alt="Preview">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tourDescription">Description</label>
+                            <textarea id="tourDescription" class="form-control" placeholder="Enter tour description"></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn btn-outline" id="cancelTourBtn">Cancel</button>
+                            <button class="btn" id="saveTourBtn">Save Tour Date</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Settings Section -->
+            <div id="settingsSection" style="display: none;">
+                <div class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Admin Settings</h2>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="adminUsername">Admin Username</label>
+                            <input type="text" id="adminUsername" class="form-control" value="admin">
+                        </div>
+                        <div class="form-group">
+                            <label for="adminPassword">Admin Password</label>
+                            <input type="password" id="adminPassword" class="form-control" placeholder="Enter new password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm new password">
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button class="btn" id="saveSettingsBtn">Save Settings</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Login Form (initially hidden) -->
+    <div id="admin-login" class="login-container" style="display:none">
+        <div class="login-box">
+            <div class="login-logo">
+                <h1>13<span>TH</span> ADMIN</h1>
+            </div>
+            <h2 class="login-title">Admin Login</h2>
+            
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" class="form-control" placeholder="Enter username">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" placeholder="Enter password">
+            </div>
+            
+            <button class="btn" id="loginBtn" style="width: 100%; margin-top: 20px;">Login</button>
+            
+            <p id="loginError" style="color: var(--danger); margin-top: 15px; display: none;">Invalid username or password</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles background
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ff2a2a" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ff2a2a",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+        
+        // Data storage
+        const storage = {
+            // Default admin credentials
+            adminUsername: "admin",
+            adminPassword: "13thadmin",
+            
+            // Data collections
+            news: [],
+            albums: [],
+            videos: [],
+            tourDates: [],
+            messages: [],
+            
+            init: function() {
+                // Load data from localStorage if available
+                const savedData = localStorage.getItem('bandWebsiteData');
+                if (savedData) {
+                    const parsedData = JSON.parse(savedData);
+                    Object.assign(this, parsedData);
+                } else {
+                    // Initialize with sample data
+                    this.news = [
+                        {
+                            id: this.generateId(),
+                            title: "Eternal Shadows Album Release",
+                            date: "2025-08-15",
+                            content: "Our highly anticipated third studio album is now available worldwide. 12 tracks of our darkest and most intricate compositions to date.",
+                            category: "Album Release",
+                            status: "Published",
+                            image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                        },
+                        {
+                            id: this.generateId(),
+                            title: "World Tour Announced",
+                            date: "2025-08-08",
+                            content: "We're embarking on our biggest tour yet. 40 dates across 20 countries. Pre-sale tickets available now for fan club members.",
+                            category: "Tour Announcement",
+                            status: "Published",
+                            image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                        }
+                    ];
+                    
+                    this.albums = [
+                        {
+                            id: this.generateId(),
+                            title: "ETERNAL SHADOWS",
+                            releaseDate: "2025-08-15",
+                            type: "Studio Album",
+                            cover: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                            tracks: [
+                                { number: 1, title: "Requiem for the Damned" },
+                                { number: 2, title: "Shadows Embrace" },
+                                { number: 3, title: "Funeral Procession" },
+                                { number: 4, title: "Ashes of Tomorrow" },
+                                { number: 5, title: "Midnight Dirge" }
+                            ]
+                        }
+                    ];
+                    
+                    this.videos = [
+                        {
+                            id: this.generateId(),
+                            title: "Requiem for the Damned",
+                            date: "2025-07-30",
+                            thumbnail: "https://images.unsplash.com/photo-1571330735066-03aaa9429d89?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                            url: "https://youtu.be/example1"
+                        }
+                    ];
+                    
+                    this.tourDates = [
+                        {
+                            id: this.generateId(),
+                            date: "2025-09-15",
+                            location: "LOS ANGELES, CA",
+                            venue: "The Crypt Theater",
+                            description: "Join us for our album release show with special guests Voidwalker and Eternal Nightmare.",
+                            image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                        }
+                    ];
+                    
+                    this.save();
+                }
+            },
+            
+            generateId: function() {
+                return Date.now().toString(36) + Math.random().toString(36).substr(2);
+            },
+            
+            save: function() {
+                localStorage.setItem('bandWebsiteData', JSON.stringify({
+                    adminUsername: this.adminUsername,
+                    adminPassword: this.adminPassword,
+                    news: this.news,
+                    albums: this.albums,
+                    videos: this.videos,
+                    tourDates: this.tourDates,
+                    messages: this.messages
+                }));
+            },
+            
+            // News CRUD operations
+            addNews: function(news) {
+                this.news.push(news);
+                this.save();
+            },
+            
+            updateNews: function(id, updatedNews) {
+                const index = this.news.findIndex(n => n.id === id);
+                if (index !== -1) {
+                    this.news[index] = updatedNews;
+                    this.save();
+                }
+            },
+            
+            deleteNews: function(id) {
+                this.news = this.news.filter(n => n.id !== id);
+                this.save();
+            },
+            
+            // Album CRUD operations
+            addAlbum: function(album) {
+                this.albums.push(album);
+                this.save();
+            },
+            
+            updateAlbum: function(id, updatedAlbum) {
+                const index = this.albums.findIndex(a => a.id === id);
+                if (index !== -1) {
+                    this.albums[index] = updatedAlbum;
+                    this.save();
+                }
+            },
+            
+            deleteAlbum: function(id) {
+                this.albums = this.albums.filter(a => a.id !== id);
+                this.save();
+            },
+            
+            // Video CRUD operations
+            addVideo: function(video) {
+                this.videos.push(video);
+                this.save();
+            },
+            
+            updateVideo: function(id, updatedVideo) {
+                const index = this.videos.findIndex(v => v.id === id);
+                if (index !== -1) {
+                    this.videos[index] = updatedVideo;
+                    this.save();
+                }
+            },
+            
+            deleteVideo: function(id) {
+                this.videos = this.videos.filter(v => v.id !== id);
+                this.save();
+            },
+            
+            // Tour CRUD operations
+            addTourDate: function(tourDate) {
+                this.tourDates.push(tourDate);
+                this.save();
+            },
+            
+            updateTourDate: function(id, updatedTourDate) {
+                const index = this.tourDates.findIndex(t => t.id === id);
+                if (index !== -1) {
+                    this.tourDates[index] = updatedTourDate;
+                    this.save();
+                }
+            },
+            
+            deleteTourDate: function(id) {
+                this.tourDates = this.tourDates.filter(t => t.id !== id);
+                this.save();
+            },
+            
+            // Message operations
+            addMessage: function(message) {
+                this.messages.push(message);
+                this.save();
+            },
+            
+            // Admin settings
+            updateAdminCredentials: function(username, password) {
+                this.adminUsername = username;
+                this.adminPassword = password;
+                this.save();
+            }
+        };
+        
+        // Initialize storage
+        storage.init();
+        
+        // View toggle functionality
+        document.getElementById('showFrontend').addEventListener('click', () => {
+            document.getElementById('frontend-website').style.display = 'block';
+            document.getElementById('admin-panel').style.display = 'none';
+            document.getElementById('admin-login').style.display = 'none';
+            renderFrontendContent();
+        });
+        
+        document.getElementById('showAdmin').addEventListener('click', () => {
+            document.getElementById('frontend-website').style.display = 'none';
+            document.getElementById('admin-panel').style.display = 'flex';
+            document.getElementById('admin-login').style.display = 'none';
+        });
+        
+        // Login functionality
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === storage.adminUsername && password === storage.adminPassword) {
+                document.getElementById('admin-login').style.display = 'none';
+                document.getElementById('admin-panel').style.display = 'flex';
+                document.getElementById('frontend-website').style.display = 'none';
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        });
+        
+        // Admin panel navigation
+        const menuLinks = document.querySelectorAll('.menu-link');
+        const sections = {
+            dashboard: document.getElementById('dashboardSection'),
+            news: document.getElementById('newsSection'),
+            music: document.getElementById('musicSection'),
+            videos: document.getElementById('videosSection'),
+            tour: document.getElementById('tourSection'),
+            messages: document.getElementById('messagesSection'),
+            settings: document.getElementById('settingsSection')
+        };
+        
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Update active menu item
+                menuLinks.forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update the main header title
+                const menuText = this.querySelector('.menu-text').textContent;
+                document.querySelector('.header-left h1').textContent = menuText;
+                
+                // Show the selected section
+                const sectionId = this.getAttribute('data-section');
+                Object.values(sections).forEach(section => {
+                    if (section) section.style.display = 'none';
+                });
+                
+                if (sections[sectionId]) {
+                    sections[sectionId].style.display = 'block';
+                    
+                    // Render section content
+                    if (sectionId === 'news') renderNewsList();
+                    if (sectionId === 'music') renderAlbumList();
+                    if (sectionId === 'videos') renderVideoList();
+                    if (sectionId === 'tour') renderTourList();
+                    if (sectionId === 'settings') {
+                        document.getElementById('adminUsername').value = storage.adminUsername;
+                        document.getElementById('adminPassword').value = '';
+                        document.getElementById('confirmPassword').value = '';
+                    }
+                }
+            });
+        });
+        
+        // Mobile sidebar toggle
+        document.getElementById('adminMobileToggle').addEventListener('click', function() {
+            document.getElementById('adminSidebar').classList.toggle('active');
+        });
+        
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('admin-panel').style.display = 'none';
+            document.getElementById('admin-login').style.display = 'flex';
+            document.getElementById('frontend-website').style.display = 'none';
+        });
+        
+        document.getElementById('dropdownLogout').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('admin-panel').style.display = 'none';
+            document.getElementById('admin-login').style.display = 'flex';
+            document.getElementById('frontend-website').style.display = 'none';
+        });
+        
+        // ===================
+        // NEWS MANAGEMENT
+        // ===================
+        function renderNewsList() {
+            const newsList = document.getElementById('newsList');
+            newsList.innerHTML = '';
+            
+            storage.news.forEach(news => {
+                const newsItem = document.createElement('div');
+                newsItem.className = 'content-section';
+                newsItem.innerHTML = `
+                    <div class="section-header">
+                        <h3>${news.title}</h3>
+                        <div class="table-actions">
+                            <div class="action-btn edit-news" data-id="${news.id}"><i class="fas fa-edit"></i></div>
+                            <div class="action-btn delete-news" data-id="${news.id}"><i class="fas fa-trash"></i></div>
+                        </div>
+                    </div>
+                    <p><strong>Date:</strong> ${news.date}</p>
+                    <p><strong>Category:</strong> ${news.category}</p>
+                    <p><strong>Status:</strong> ${news.status}</p>
+                    <img src="${news.image}" alt="${news.title}" style="max-width: 300px; border-radius: 8px; margin: 15px 0;">
+                    <p>${news.content}</p>
+                `;
+                newsList.appendChild(newsItem);
+            });
+            
+            // Add event listeners for edit and delete
+            document.querySelectorAll('.edit-news').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const news = storage.news.find(item => item.id === id);
+                    if (news) {
+                        document.getElementById('newsTitle').value = news.title;
+                        document.getElementById('newsDate').value = news.date;
+                        document.getElementById('newsCategory').value = news.category;
+                        document.getElementById('newsStatus').value = news.status;
+                        document.getElementById('newsContent').value = news.content;
+                        document.getElementById('newsImagePreview').style.display = 'block';
+                        document.getElementById('newsPreviewImg').src = news.image;
+                        document.getElementById('newsList').style.display = 'none';
+                        document.getElementById('newsForm').style.display = 'block';
+                        
+                        // Store current news ID for update
+                        document.getElementById('newsForm').dataset.id = id;
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.delete-news').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    if (confirm('Are you sure you want to delete this news article?')) {
+                        storage.deleteNews(id);
+                        renderNewsList();
+                    }
+                });
+            });
+        }
+        
+        // Initialize news form functionality
+        document.getElementById('addNewsBtn').addEventListener('click', function() {
+            document.getElementById('newsTitle').value = '';
+            document.getElementById('newsDate').value = '';
+            document.getElementById('newsCategory').value = 'Album Release';
+            document.getElementById('newsStatus').value = 'Published';
+            document.getElementById('newsContent').value = '';
+            document.getElementById('newsImagePreview').style.display = 'none';
+            document.getElementById('newsList').style.display = 'none';
+            document.getElementById('newsForm').style.display = 'block';
+            delete document.getElementById('newsForm').dataset.id;
+        });
+        
+        document.getElementById('cancelNewsBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('newsList').style.display = 'block';
+            document.getElementById('newsForm').style.display = 'none';
+        });
+        
+        document.getElementById('saveNewsBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('newsTitle').value;
+            const date = document.getElementById('newsDate').value;
+            const category = document.getElementById('newsCategory').value;
+            const status = document.getElementById('newsStatus').value;
+            const content = document.getElementById('newsContent').value;
+            const image = document.getElementById('newsPreviewImg').src || '';
+            
+            if (title && date && content) {
+                const newsData = {
+                    id: document.getElementById('newsForm').dataset.id || storage.generateId(),
+                    title,
+                    date,
+                    content,
+                    category,
+                    status,
+                    image
+                };
+                
+                if (document.getElementById('newsForm').dataset.id) {
+                    storage.updateNews(newsData.id, newsData);
+                } else {
+                    storage.addNews(newsData);
+                }
+                
+                renderNewsList();
+                document.getElementById('newsList').style.display = 'block';
+                document.getElementById('newsForm').style.display = 'none';
+            } else {
+                alert('Please fill in all required fields');
+            }
+        });
+        
+        // Image preview for news
+        document.getElementById('newsImage').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('newsPreviewImg').src = e.target.result;
+                    document.getElementById('newsImagePreview').style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // ===================
+        // MUSIC MANAGEMENT
+        // ===================
+        function renderAlbumList() {
+            const albumList = document.getElementById('albumList');
+            albumList.innerHTML = '';
+            
+            storage.albums.forEach(album => {
+                const albumItem = document.createElement('div');
+                albumItem.className = 'content-section';
+                albumItem.innerHTML = `
+                    <div class="section-header">
+                        <h3>${album.title}</h3>
+                        <div class="table-actions">
+                            <div class="action-btn edit-album" data-id="${album.id}"><i class="fas fa-edit"></i></div>
+                            <div class="action-btn delete-album" data-id="${album.id}"><i class="fas fa-trash"></i></div>
+                        </div>
+                    </div>
+                    <p><strong>Release Date:</strong> ${album.releaseDate}</p>
+                    <p><strong>Type:</strong> ${album.type}</p>
+                    <img src="${album.cover}" alt="${album.title}" style="max-width: 300px; border-radius: 8px; margin: 15px 0;">
+                    <h4>Tracks:</h4>
+                    <ul>
+                        ${album.tracks.map(track => `<li>${track.number}. ${track.title}</li>`).join('')}
+                    </ul>
+                `;
+                albumList.appendChild(albumItem);
+            });
+            
+            // Add event listeners for edit and delete
+            document.querySelectorAll('.edit-album').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const album = storage.albums.find(item => item.id === id);
+                    if (album) {
+                        document.getElementById('albumTitle').value = album.title;
+                        document.getElementById('albumDate').value = album.releaseDate;
+                        document.getElementById('albumType').value = album.type;
+                        document.getElementById('albumCoverPreview').style.display = 'block';
+                        document.getElementById('albumPreviewImg').src = album.cover;
+                        
+                        // Clear tracks container
+                        const tracksContainer = document.getElementById('tracksContainer');
+                        tracksContainer.innerHTML = '';
+                        
+                        // Add tracks
+                        album.tracks.forEach((track, index) => {
+                            addTrackElement(track.number, track.title, index);
+                        });
+                        
+                        document.getElementById('albumList').style.display = 'none';
+                        document.getElementById('albumForm').style.display = 'block';
+                        
+                        // Store current album ID for update
+                        document.getElementById('albumForm').dataset.id = id;
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.delete-album').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    if (confirm('Are you sure you want to delete this album?')) {
+                        storage.deleteAlbum(id);
+                        renderAlbumList();
+                    }
+                });
+            });
+        }
+        
+        function addTrackElement(number, title, index) {
+            const trackItem = document.createElement('div');
+            trackItem.className = 'track-item';
+            trackItem.style.display = 'flex';
+            trackItem.style.justifyContent = 'space-between';
+            trackItem.style.padding = '10px';
+            trackItem.style.borderBottom = '1px solid var(--panel-border)';
+            trackItem.innerHTML = `
+                <div style="flex: 1; display: flex; align-items: center;">
+                    <input type="number" class="form-control track-number" value="${number}" style="width: 50px; margin-right: 10px;" min="1">
+                    <input type="text" class="form-control track-title" value="${title}" placeholder="Track title">
+                </div>
+                <div class="table-actions">
+                    <div class="action-btn remove-track" data-index="${index}"><i class="fas fa-trash"></i></div>
+                </div>
+            `;
+            document.getElementById('tracksContainer').appendChild(trackItem);
+            
+            // Add event listener for remove button
+            trackItem.querySelector('.remove-track').addEventListener('click', function() {
+                trackItem.remove();
+            });
+        }
+        
+        document.getElementById('addAlbumBtn').addEventListener('click', function() {
+            document.getElementById('albumTitle').value = '';
+            document.getElementById('albumDate').value = '';
+            document.getElementById('albumType').value = 'Studio Album';
+            document.getElementById('albumCoverPreview').style.display = 'none';
+            
+            // Clear tracks container
+            const tracksContainer = document.getElementById('tracksContainer');
+            tracksContainer.innerHTML = '';
+            
+            // Add one empty track
+            addTrackElement(1, '', 0);
+            
+            document.getElementById('albumList').style.display = 'none';
+            document.getElementById('albumForm').style.display = 'block';
+            delete document.getElementById('albumForm').dataset.id;
+        });
+        
+        document.getElementById('addTrackBtn').addEventListener('click', function() {
+            const trackCount = document.querySelectorAll('.track-item').length + 1;
+            addTrackElement(trackCount, '', document.querySelectorAll('.track-item').length);
+        });
+        
+        document.getElementById('saveAlbumBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('albumTitle').value;
+            const releaseDate = document.getElementById('albumDate').value;
+            const type = document.getElementById('albumType').value;
+            const cover = document.getElementById('albumPreviewImg').src || '';
+            
+            // Get tracks
+            const tracks = [];
+            document.querySelectorAll('.track-item').forEach(item => {
+                const number = item.querySelector('.track-number').value;
+                const title = item.querySelector('.track-title').value;
+                if (title) {
+                    tracks.push({
+                        number: parseInt(number),
+                        title
+                    });
+                }
+            });
+            
+            if (title && releaseDate && tracks.length > 0) {
+                const albumData = {
+                    id: document.getElementById('albumForm').dataset.id || storage.generateId(),
+                    title,
+                    releaseDate,
+                    type,
+                    cover,
+                    tracks
+                };
+                
+                if (document.getElementById('albumForm').dataset.id) {
+                    storage.updateAlbum(albumData.id, albumData);
+                } else {
+                    storage.addAlbum(albumData);
+                }
+                
+                renderAlbumList();
+                document.getElementById('albumList').style.display = 'block';
+                document.getElementById('albumForm').style.display = 'none';
+            } else {
+                alert('Please fill in all required fields and add at least one track');
+            }
+        });
+        
+        document.getElementById('cancelAlbumBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('albumList').style.display = 'block';
+            document.getElementById('albumForm').style.display = 'none';
+        });
+        
+        // Album cover preview
+        document.getElementById('albumCover').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('albumPreviewImg').src = e.target.result;
+                    document.getElementById('albumCoverPreview').style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // ===================
+        // VIDEO MANAGEMENT
+        // ===================
+        function renderVideoList() {
+            const videoList = document.getElementById('videoList');
+            videoList.innerHTML = '';
+            
+            storage.videos.forEach(video => {
+                const videoItem = document.createElement('div');
+                videoItem.className = 'content-section';
+                videoItem.innerHTML = `
+                    <div class="section-header">
+                        <h3>${video.title}</h3>
+                        <div class="table-actions">
+                            <div class="action-btn edit-video" data-id="${video.id}"><i class="fas fa-edit"></i></div>
+                            <div class="action-btn delete-video" data-id="${video.id}"><i class="fas fa-trash"></i></div>
+                        </div>
+                    </div>
+                    <p><strong>Date:</strong> ${video.date}</p>
+                    <img src="${video.thumbnail}" alt="${video.title}" style="max-width: 300px; border-radius: 8px; margin: 15px 0;">
+                    <p><strong>URL:</strong> ${video.url}</p>
+                `;
+                videoList.appendChild(videoItem);
+            });
+            
+            // Add event listeners for edit and delete
+            document.querySelectorAll('.edit-video').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const video = storage.videos.find(item => item.id === id);
+                    if (video) {
+                        document.getElementById('videoTitle').value = video.title;
+                        document.getElementById('videoDate').value = video.date;
+                        document.getElementById('videoUrl').value = video.url;
+                        document.getElementById('videoThumbnailPreview').style.display = 'block';
+                        document.getElementById('videoPreviewImg').src = video.thumbnail;
+                        document.getElementById('videoList').style.display = 'none';
+                        document.getElementById('videoForm').style.display = 'block';
+                        
+                        // Store current video ID for update
+                        document.getElementById('videoForm').dataset.id = id;
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.delete-video').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    if (confirm('Are you sure you want to delete this video?')) {
+                        storage.deleteVideo(id);
+                        renderVideoList();
+                    }
+                });
+            });
+        }
+        
+        document.getElementById('addVideoBtn').addEventListener('click', function() {
+            document.getElementById('videoTitle').value = '';
+            document.getElementById('videoDate').value = '';
+            document.getElementById('videoUrl').value = '';
+            document.getElementById('videoThumbnailPreview').style.display = 'none';
+            document.getElementById('videoList').style.display = 'none';
+            document.getElementById('videoForm').style.display = 'block';
+            delete document.getElementById('videoForm').dataset.id;
+        });
+        
+        document.getElementById('cancelVideoBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('videoList').style.display = 'block';
+            document.getElementById('videoForm').style.display = 'none';
+        });
+        
+        document.getElementById('saveVideoBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('videoTitle').value;
+            const date = document.getElementById('videoDate').value;
+            const url = document.getElementById('videoUrl').value;
+            const thumbnail = document.getElementById('videoPreviewImg').src || '';
+            
+            if (title && date && url) {
+                const videoData = {
+                    id: document.getElementById('videoForm').dataset.id || storage.generateId(),
+                    title,
+                    date,
+                    thumbnail,
+                    url
+                };
+                
+                if (document.getElementById('videoForm').dataset.id) {
+                    storage.updateVideo(videoData.id, videoData);
+                } else {
+                    storage.addVideo(videoData);
+                }
+                
+                renderVideoList();
+                document.getElementById('videoList').style.display = 'block';
+                document.getElementById('videoForm').style.display = 'none';
+            } else {
+                alert('Please fill in all required fields');
+            }
+        });
+        
+        // Video thumbnail preview
+        document.getElementById('videoThumbnail').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('videoPreviewImg').src = e.target.result;
+                    document.getElementById('videoThumbnailPreview').style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // ===================
+        // TOUR MANAGEMENT
+        // ===================
+        function renderTourList() {
+            const tourList = document.getElementById('tourList');
+            tourList.innerHTML = '';
+            
+            storage.tourDates.forEach(tour => {
+                const tourItem = document.createElement('div');
+                tourItem.className = 'content-section';
+                tourItem.innerHTML = `
+                    <div class="section-header">
+                        <h3>${tour.location} - ${tour.venue}</h3>
+                        <div class="table-actions">
+                            <div class="action-btn edit-tour" data-id="${tour.id}"><i class="fas fa-edit"></i></div>
+                            <div class="action-btn delete-tour" data-id="${tour.id}"><i class="fas fa-trash"></i></div>
+                        </div>
+                    </div>
+                    <p><strong>Date:</strong> ${tour.date}</p>
+                    <img src="${tour.image}" alt="${tour.location}" style="max-width: 300px; border-radius: 8px; margin: 15px 0;">
+                    <p>${tour.description}</p>
+                `;
+                tourList.appendChild(tourItem);
+            });
+            
+            // Add event listeners for edit and delete
+            document.querySelectorAll('.edit-tour').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const tour = storage.tourDates.find(item => item.id === id);
+                    if (tour) {
+                        document.getElementById('tourDate').value = tour.date;
+                        document.getElementById('tourLocation').value = tour.location;
+                        document.getElementById('tourVenue').value = tour.venue;
+                        document.getElementById('tourDescription').value = tour.description;
+                        document.getElementById('tourImagePreview').style.display = 'block';
+                        document.getElementById('tourPreviewImg').src = tour.image;
+                        document.getElementById('tourList').style.display = 'none';
+                        document.getElementById('tourForm').style.display = 'block';
+                        
+                        // Store current tour ID for update
+                        document.getElementById('tourForm').dataset.id = id;
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.delete-tour').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    if (confirm('Are you sure you want to delete this tour date?')) {
+                        storage.deleteTourDate(id);
+                        renderTourList();
+                    }
+                });
+            });
+        }
+        
+        document.getElementById('addTourBtn').addEventListener('click', function() {
+            document.getElementById('tourDate').value = '';
+            document.getElementById('tourLocation').value = '';
+            document.getElementById('tourVenue').value = '';
+            document.getElementById('tourDescription').value = '';
+            document.getElementById('tourImagePreview').style.display = 'none';
+            document.getElementById('tourList').style.display = 'none';
+            document.getElementById('tourForm').style.display = 'block';
+            delete document.getElementById('tourForm').dataset.id;
+        });
+        
+        document.getElementById('cancelTourBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('tourList').style.display = 'block';
+            document.getElementById('tourForm').style.display = 'none';
+        });
+        
+        document.getElementById('saveTourBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const date = document.getElementById('tourDate').value;
+            const location = document.getElementById('tourLocation').value;
+            const venue = document.getElementById('tourVenue').value;
+            const description = document.getElementById('tourDescription').value;
+            const image = document.getElementById('tourPreviewImg').src || '';
+            
+            if (date && location && venue) {
+                const tourData = {
+                    id: document.getElementById('tourForm').dataset.id || storage.generateId(),
+                    date,
+                    location,
+                    venue,
+                    description,
+                    image
+                };
+                
+                if (document.getElementById('tourForm').dataset.id) {
+                    storage.updateTourDate(tourData.id, tourData);
+                } else {
+                    storage.addTourDate(tourData);
+                }
+                
+                renderTourList();
+                document.getElementById('tourList').style.display = 'block';
+                document.getElementById('tourForm').style.display = 'none';
+            } else {
+                alert('Please fill in all required fields');
+            }
+        });
+        
+        // Tour image preview
+        document.getElementById('tourImage').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('tourPreviewImg').src = e.target.result;
+                    document.getElementById('tourImagePreview').style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // ===================
+        // SETTINGS MANAGEMENT
+        // ===================
+        document.getElementById('saveSettingsBtn').addEventListener('click', function() {
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (username && password && confirmPassword) {
+                if (password === confirmPassword) {
+                    storage.updateAdminCredentials(username, password);
+                    alert('Admin credentials updated successfully!');
+                } else {
+                    alert('Passwords do not match');
+                }
+            } else {
+                alert('Please fill in all fields');
+            }
+        });
+        
+        // ===================
+        // FRONTEND RENDERING
+        // ===================
+        function renderFrontendContent() {
+            // Render news
+            const newsGrid = document.getElementById('frontendNewsGrid');
+            newsGrid.innerHTML = '';
+            
+            storage.news.filter(n => n.status === 'Published').forEach(news => {
+                newsGrid.innerHTML += `
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="${news.image}" alt="${news.title}">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date">${formatDate(news.date)}</span>
+                            <h3 class="news-title">${news.title}</h3>
+                            <p class="news-excerpt">${news.content.substring(0, 150)}...</p>
+                            <a href="#" class="news-link">Read More</a>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            // Render music
+            const musicContainer = document.getElementById('musicContainer');
+            if (storage.albums.length > 0) {
+                const album = storage.albums[0];
+                musicContainer.innerHTML = `
+                    <div class="album-art">
+                        <img src="${album.cover}" alt="${album.title}">
+                    </div>
+                    <div class="album-info">
+                        <h2 class="album-title">${album.title}</h2>
+                        <p class="album-subtitle">${album.type} | Released ${formatDate(album.releaseDate)}</p>
+                        <ul class="track-list">
+                            ${album.tracks.map(track => `
+                                <li>
+                                    <div>
+                                        <span class="track-number">${track.number.toString().padStart(2, '0')}</span>
+                                        ${track.title}
+                                    </div>
+                                    <span class="track-play"><i class="fas fa-play"></i></span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                        <div class="streaming-links">
+                            <a href="#" class="stream-btn">
+                                <i class="fab fa-spotify"></i> Spotify
+                            </a>
+                            <a href="#" class="stream-btn">
+                                <i class="fab fa-apple"></i> Apple Music
+                            </a>
+                            <a href="#" class="stream-btn">
+                                <i class="fab fa-youtube"></i> YouTube Music
+                            </a>
+                            <a href="#" class="stream-btn">
+                                <i class="fas fa-shopping-cart"></i> Buy Physical
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Render videos
+            const videosContainer = document.getElementById('videosContainer');
+            videosContainer.innerHTML = '';
+            
+            storage.videos.forEach(video => {
+                videosContainer.innerHTML += `
+                    <div class="video-card">
+                        <div class="video-thumb">
+                            <img src="${video.thumbnail}" alt="${video.title}">
+                            <div class="video-play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">${video.title}</h3>
+                            <span class="video-date">${formatDate(video.date)}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            // Render tour dates
+            const tourContainer = document.getElementById('tourContainer');
+            tourContainer.innerHTML = '';
+            
+            storage.tourDates.forEach(tour => {
+                const date = new Date(tour.date);
+                const day = date.getDate();
+                const month = date.toLocaleString('default', { month: 'short' }).toUpperCase();
+                
+                tourContainer.innerHTML += `
+                    <div class="tour-item">
+                        <div class="tour-date">
+                            <div>
+                                <div class="tour-day">${day}</div>
+                                <div class="tour-month">${month}</div>
+                            </div>
+                        </div>
+                        <div class="tour-info">
+                            <div class="tour-location">${tour.location}</div>
+                            <span class="tour-venue">${tour.venue}</span>
+                            <p>${tour.description}</p>
+                            <a href="#" class="tour-btn">GET TICKETS</a>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            }).toUpperCase();
+        }
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Render initial admin content
+            renderNewsList();
+            renderAlbumList();
+            renderVideoList();
+            renderTourList();
+            renderFrontendContent();
+            
+            // Mobile menu toggle for frontend
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            mobileToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                mobileToggle.innerHTML = navMenu.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update active nav link
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                        
+                        // Close mobile menu if open
+                        if (navMenu.classList.contains('active')) {
+                            navMenu.classList.remove('active');
+                            mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        }
+                    }
+                });
+            });
+            
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const message = {
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        subject: document.getElementById('subject').value,
+                        message: document.getElementById('message').value,
+                        date: new Date().toISOString(),
+                        status: 'Pending'
+                    };
+                    
+                    storage.addMessage(message);
+                    alert('Thank you for your message! We will get back to you soon.');
+                    contactForm.reset();
+                });
+            }
+            
+            // Simulate track play
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.track-play')) {
+                    const icon = e.target.closest('.track-play').querySelector('i');
+                    const title = e.target.closest('li').querySelector('.track-title')?.textContent || 
+                                 e.target.closest('li').querySelector('div > div').textContent;
+                    
+                    if (icon.classList.contains('fa-play')) {
+                        icon.classList.remove('fa-play');
+                        icon.classList.add('fa-pause');
+                        // Play audio simulation
+                        alert('Now playing: ' + title);
+                    } else {
+                        icon.classList.remove('fa-pause');
+                        icon.classList.add('fa-play');
+                        // Pause audio simulation
+                    }
+                }
+            });
+            
+            // Video play button
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.video-play-btn')) {
+                    const videoCard = e.target.closest('.video-card');
+                    const videoTitle = videoCard.querySelector('.video-title').textContent;
+                    alert('Video player would launch for: ' + videoTitle);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
