@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13TH FUNERAL | OFFICIAL WEBSITE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0a0a0f;
+            --darker-bg: #050507;
+            --accent: #ff2a2a;
+            --accent-dark: #c21e1e;
+            --accent-light: #ff5e5e;
+            --text: #f0f0f0;
+            --text-dim: #b0b0b0;
+            --panel: #13131a;
+            --panel-border: #252535;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 42, 42, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 42, 42, 0.05) 0%, transparent 20%);
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        /* Particle background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        /* Header and Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 42, 42, 0.2);
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            padding: 15px 5%;
+            background: rgba(10, 10, 15, 0.98);
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 2.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-shadow: 0 0 15px rgba(255, 42, 42, 0.5);
+            position: relative;
+        }
+        
+        .logo span {
+            color: var(--text);
+        }
+        
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+        
+        .logo:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-link {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            z-index: 10;
+        }
+        
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 42, 42, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: var(--text-dim);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: var(--transition);
+            margin: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            background: var(--accent);
+            color: #000;
+            box-shadow: 0 0 25px rgba(255, 42, 42, 0.5);
+            transform: translateY(-5px);
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: #000;
+        }
+        
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+        
+        /* Section Styling */
+        .section {
+            padding: 100px 5%;
+            position: relative;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+        }
+        
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .news-card {
+            background: var(--panel);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--panel-border);
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 42, 42, 0.2);
+            border-color: var(--accent);
+        }
+        
+        .news-image {
+            height: 220px;
+            background: linear-gradient(45deg, #2c1a1a, #1a1a2c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .news-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 42, 42, 0.1), transparent);
+        }
+        
+        .news-content {
+            padding: 25px;
+        }
+        
+        .news-date {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .news-title {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .news-excerpt {
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .news-link {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding-right: 25px;
+        }
+        
+        .news-link::after {
+            content: '→';
+            position: absolute;
+            right: 0;
+            transition: var(--transition);
+        }
+        
+        .news-link:hover::after {
+            right: -5px;
+        }
+        
+        /* Music Section */
+        .music-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--panel);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--panel-border);
+        }
+        
+        .album-art {
+            flex: 0 0 45%;
+            position: relative;
+            min-height: 500px;
+            background: linear-gradient(45deg, #1a1a1a, #2c1a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .album-art::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 42, 42, 0.1), transparent);
+        }
+        
+        .album-art i {
+            font-size: 8rem;
+            color: var(--accent);
+            opacity: 0.5;
+            z-index: 1;
+        }
+        
+        .album-info {
+            flex: 1;
+            padding: 40px;
+        }
+        
+        .album-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .album-subtitle {
+            color: var(--text-dim);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .track-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .track-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--panel-border);
+            display: flex;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+        
+        .track-list li:hover {
+            color: var(--accent);
+        }
+        
+        .track-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .track-number {
+            color: var(--accent);
+            margin-right: 15px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .track-play {
+            color: var(--accent);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--accent);
+        }
+        
+        .track-play:hover {
+            background: var(--accent);
+            color: #000;
+        }
+        
+        .streaming-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .stream-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--panel-border);
+            border-radius: 30px;
+            color: var(--text);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .stream-btn:hover {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+        }
+        
+        /* Videos Section */
+        .videos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .video-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 42, 42, 0.2);
+        }
+        
+        .video-thumb {
+            position: relative;
+            height: 250px;
+            background: linear-gradient(45deg, #1a1a1a, #2c1a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--accent);
+        }
+        
+        .video-thumb::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 42, 42, 0.1), transparent);
+        }
+        
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2;
+        }
+        
+        .video-play-btn:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 42, 42, 0.8);
+        }
+        
+        .video-play-btn i {
+            font-size: 1.8rem;
+            margin-left: 5px;
+            color: #000;
+        }
+        
+        .video-info {
+            padding: 25px;
+        }
+        
+        .video-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .video-date {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        /* Tour Section */
+        .tour-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .tour-item {
+            display: flex;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            background: var(--panel);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--panel-border);
+            transition: var(--transition);
+        }
+        
+        .tour-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 42, 42, 0.2);
+        }
+        
+        .tour-date {
+            background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+            color: white;
+            padding: 30px 25px;
+            min-width: 150px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .tour-day {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .tour-month {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .tour-info {
+            padding: 30px;
+            flex: 1;
+        }
+        
+        .tour-location {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .tour-venue {
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: block;
+            font-size: 1.1rem;
+        }
+        
+        .tour-btn {
+            display: inline-block;
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 15px;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        .tour-btn:hover {
+            background: var(--accent);
+            color: #000;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            background: var(--panel);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--panel-border);
+        }
+        
+        .contact-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+        
+        .contact-detail {
+            display: flex;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 42, 42, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.2rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        
+        .contact-text h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        
+        .contact-text p {
+            color: var(--text-dim);
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 30px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: var(--transition);
+            border: 1px solid var(--panel-border);
+        }
+        
+        .social-link:hover {
+            background: var(--accent);
+            color: #000;
+            transform: translateY(-5px);
+        }
+        
+        .contact-form {
+            background: var(--panel);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--panel-border);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 42, 42, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-block;
+            font-weight: 700;
+        }
+        
+        .submit-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 42, 42, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--panel-border);
+            background: var(--darker-bg);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+            
+            .music-container {
+                flex-direction: column;
+            }
+            
+            .album-art {
+                min-height: 300px;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--darker-bg);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                border-bottom: 1px solid rgba(255, 42, 42, 0.2);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+                letter-spacing: 4px;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 80px 5%;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .videos-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tour-item {
+                flex-direction: column;
+            }
+            
+            .tour-date {
+                flex-direction: row;
+                justify-content: space-around;
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+                letter-spacing: 2px;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle background -->
+    <div id="particles-js"></div>
+    
+    <!-- Header -->
+    <header id="header">
+        <a href="#" class="logo">13<span>TH</span> FUNERAL</a>
+        
+        <nav class="nav-menu" id="navMenu">
+            <a href="#news" class="nav-link active">News</a>
+            <a href="#music" class="nav-link">Music</a>
+            <a href="#videos" class="nav-link">Videos</a>
+            <a href="#tour" class="nav-link">Tour</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+        
+        <button class="mobile-toggle" id="mobileToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>13TH FUNERAL</h1>
+            <p>DARKNESS PERFECTED THROUGH SOUND | THE NEW ALBUM "ETERNAL SHADOWS" OUT NOW</p>
+            <div>
+                <a href="#music" class="btn btn-primary">LISTEN NOW</a>
+                <a href="#tour" class="btn">TOUR DATES</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- News Section -->
+    <section id="news" class="section">
+        <h2 class="section-title">Latest News</h2>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-image">
+                    <i class="fas fa-compact-disc"></i>
+                </div>
+                <div class="news-content">
+                    <span class="news-date">AUGUST 15, 2025</span>
+                    <h3 class="news-title">"Eternal Shadows" Album Release</h3>
+                    <p class="news-excerpt">Our highly anticipated third studio album is now available worldwide. 12 tracks of our darkest and most intricate compositions to date.</p>
+                    <a href="#" class="news-link">Read More</a>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <div class="news-image">
+                    <i class="fas fa-ticket-alt"></i>
+                </div>
+                <div class="news-content">
+                    <span class="news-date">AUGUST 8, 2025</span>
+                    <h3 class="news-title">World Tour Announced</h3>
+                    <p class="news-excerpt">We're embarking on our biggest tour yet. 40 dates across 20 countries. Pre-sale tickets available now for fan club members.</p>
+                    <a href="#" class="news-link">Read More</a>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <div class="news-image">
+                    <i class="fas fa-guitar"></i>
+                </div>
+                <div class="news-content">
+                    <span class="news-date">JULY 30, 2025</span>
+                    <h3 class="news-title">New Signature Guitar Line</h3>
+                    <p class="news-excerpt">In collaboration with Crimson Instruments, we're releasing a limited edition signature guitar series featuring our unique artwork.</p>
+                    <a href="#" class="news-link">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Music Section -->
+    <section id="music" class="section">
+        <h2 class="section-title">Our Music</h2>
+        <div class="music-container">
+            <div class="album-art">
+                <i class="fas fa-compact-disc"></i>
+            </div>
+            
+            <div class="album-info">
+                <h2 class="album-title">ETERNAL SHADOWS</h2>
+                <p class="album-subtitle">The Third Studio Album | Released August 15, 2025</p>
+                
+                <ul class="track-list">
+                    <li>
+                        <div>
+                            <span class="track-number">01</span>
+                            Requiem for the Damned
+                        </div>
+                        <span class="track-play"><i class="fas fa-play"></i></span>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="track-number">02</span>
+                            Shadows Embrace
+                        </div>
+                        <span class="track-play"><i class="fas fa-play"></i></span>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="track-number">03</span>
+                            Funeral Procession
+                        </div>
+                        <span class="track-play"><i class="fas fa-play"></i></span>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="track-number">04</span>
+                            Ashes of Tomorrow
+                        </div>
+                        <span class="track-play"><i class="fas fa-play"></i></span>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="track-number">05</span>
+                            Midnight Dirge
+                        </div>
+                        <span class="track-play"><i class="fas fa-play"></i></span>
+                    </li>
+                </ul>
+                
+                <div class="streaming-links">
+                    <a href="#" class="stream-btn">
+                        <i class="fab fa-spotify"></i> Spotify
+                    </a>
+                    <a href="#" class="stream-btn">
+                        <i class="fab fa-apple"></i> Apple Music
+                    </a>
+                    <a href="#" class="stream-btn">
+                        <i class="fab fa-youtube"></i> YouTube Music
+                    </a>
+                    <a href="#" class="stream-btn">
+                        <i class="fas fa-shopping-cart"></i> Buy Physical
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Videos Section -->
+    <section id="videos" class="section">
+        <h2 class="section-title">Music Videos</h2>
+        <div class="videos-container">
+            <div class="video-card">
+                <div class="video-thumb">
+                    <i class="fas fa-play-circle"></i>
+                    <div class="video-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Requiem for the Damned (Official Video)</h3>
+                    <span class="video-date">AUGUST 10, 2025</span>
+                </div>
+            </div>
+            
+            <div class="video-card">
+                <div class="video-thumb">
+                    <i class="fas fa-play-circle"></i>
+                    <div class="video-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Ashes of Tomorrow (Live Performance)</h3>
+                    <span class="video-date">JUNE 22, 2025</span>
+                </div>
+            </div>
+            
+            <div class="video-card">
+                <div class="video-thumb">
+                    <i class="fas fa-play-circle"></i>
+                    <div class="video-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Behind the Shadows: Making of the Album</h3>
+                    <span class="video-date">MAY 15, 2025</span>
+                </div>
+            </div>
+            
+            <div class="video-card">
+                <div class="video-thumb">
+                    <i class="fas fa-play-circle"></i>
+                    <div class="video-play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Midnight Dirge (Visualizer)</h3>
+                    <span class="video-date">APRIL 3, 2025</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Tour Section -->
+    <section id="tour" class="section">
+        <h2 class="section-title">Tour Dates</h2>
+        <div class="tour-container">
+            <div class="tour-item">
+                <div class="tour-date">
+                    <div class="tour-day">15</div>
+                    <div class="tour-month">SEP</div>
+                </div>
+                <div class="tour-info">
+                    <h3 class="tour-location">London, UK</h3>
+                    <span class="tour-venue">O2 Academy Brixton</span>
+                    <p>With special guests: Shadow Cult</p>
+                    <a href="#" class="tour-btn">BUY TICKETS</a>
+                </div>
+            </div>
+            
+            <div class="tour-item">
+                <div class="tour-date">
+                    <div class="tour-day">22</div>
+                    <div class="tour-month">SEP</div>
+                </div>
+                <div class="tour-info">
+                    <h3 class="tour-location">Berlin, Germany</h3>
+                    <span class="tour-venue">Columbiahalle</span>
+                    <p>With special guests: Void Walker</p>
+                    <a href="#" class="tour-btn">BUY TICKETS</a>
+                </div>
+            </div>
+            
+            <div class="tour-item">
+                <div class="tour-date">
+                    <div class="tour-day">30</div>
+                    <div class="tour-month">SEP</div>
+                </div>
+                <div class="tour-info">
+                    <h3 class="tour-location">Paris, France</h3>
+                    <span class="tour-venue">L'Olympia</span>
+                    <p>With special guests: Nightfall</p>
+                    <a href="#" class="tour-btn">BUY TICKETS</a>
+                </div>
+            </div>
+            
+            <div class="tour-item">
+                <div class="tour-date">
+                    <div class="tour-day">10</div>
+                    <div class="tour-month">OCT</div>
+                </div>
+                <div class="tour-info">
+                    <h3 class="tour-location">New York, USA</h3>
+                    <span class="tour-venue">Terminal 5</span>
+                    <p>With special guests: Grave Echoes</p>
+                    <a href="#" class="tour-btn">BUY TICKETS</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2 class="contact-title">Get In Touch</h2>
+                
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Email</h4>
+                        <p>contact@13thfuneral.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Phone</h4>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+                
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Management</h4>
+                        <p>Dark Harmony Entertainment<br>Los Angeles, CA 90028</p>
+                    </div>
+                </div>
+                
+                <h3 class="contact-title" style="margin-top: 40px;">Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/13thFuneral" class="social-link" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-spotify"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-bandcamp"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h2 class="contact-title">Send a Message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">SEND MESSAGE</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="font-size: 2.5rem; margin-bottom: 20px;">13<span>TH</span> FUNERAL</div>
+            <div class="copyright">&copy; 2025 13TH FUNERAL. ALL RIGHTS RESERVED.</div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles background
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ff2a2a" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ff2a2a",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+        
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Close mobile menu if open
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                contactForm.reset();
+            });
+        }
+        
+        // Simulate track play
+        const playButtons = document.querySelectorAll('.track-play');
+        playButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const icon = button.querySelector('i');
+                if (icon.classList.contains('fa-play')) {
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-pause');
+                } else {
+                    icon.classList.remove('fa-pause');
+                    icon.classList.add('fa-play');
+                }
+            });
+        });
+        
+        // Video play button
+        const videoPlayButtons = document.querySelectorAll('.video-play-btn');
+        videoPlayButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                alert('Video player would launch here');
+            });
+        });
+    </script>
+</body>
+</html>
